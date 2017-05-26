@@ -1,2 +1,1 @@
-console.info("Ahoy World");
-
+import MainController from './controllers/MainController';

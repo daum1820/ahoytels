@@ -17,16 +17,10 @@ const ExtractTextPluginConfig = new ExtractTextPlugin({
     filename: 'bundle.css', allChunks: true 
 });
 
-const WebpackProvidePluginConfig = new ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-});
-
 const plugins = [
     HTMLWebpackPluginConfig,
     DefinePluginConfig,
     ExtractTextPluginConfig,
-    WebpackProvidePluginConfig
 ];
 
 const loaders = [
@@ -53,7 +47,7 @@ const webpackConfig = {
     entry: './src/index.js',
     output: { path: `${__dirname}/dist`, filename: 'build.js' },
     cache: true,
-    devtool: 'inline-eval-cheap-source-map',
+    devtool: 'source-map',
     devServer: {
         clientLogLevel: 'info',
         historyApiFallback: true,
