@@ -23,7 +23,8 @@ class HotelListController {
     loadHotel(){
         
         this._hotelList.clear();
-
+        this._alertService.clear();
+        
         this._hotelService.list()
           .then(hotels => hotels.forEach(hotel => this._hotelList.add(hotel)))
           .catch(err => this._alertService.error(err));

@@ -14,11 +14,10 @@ class HotelService {
       }
       return axios.get(`${this._baseUrl}/api/hotels`, {params}).then(response => {
         console.info('HotelService > list', response.data);
-        return response.data.map(hotel => new Hotel(hotel));
-
-      }, response => {
-        console.error("HotelService > list", response.data);
-        throw new Error(response.data);
+        return Promise.resolve(response.data.map(hotel => new Hotel(hotel)));
+      }).catch(error => {
+        console.log("HotelService > list", error.response.data);
+        return Promise.reject(error.response.data.error);
       });
     }
 }

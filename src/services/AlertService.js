@@ -34,6 +34,10 @@ class AlertService {
     success(message){
         this._setAlert(message, 'success');
     }
+
+    clear(){
+        this._setAlert('', '');
+    }
 }
 
 let service = new AlertService();
