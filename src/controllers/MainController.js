@@ -1,19 +1,16 @@
-import AlertService from '../services/AlertService';
+import HotelListController from './HotelListController';
 
-class MainController {
+class MainController{
     
     constructor() {
-        this._init();
-    }
-    
-    _init() {
-        this._alertService = AlertService();
-        this._alertService.info('Ahoy')
+      let $ = document.querySelector.bind(document);
+      console.log("Application Started...");
+      $('button.load-hotel').onclick = HotelListController().loadHotel.bind(HotelListController());
     }
 }
 
-let mainController = new MainController();
+let controller = new MainController();
 
 export default function() {
-    return mainController;
+    return controller;
 }

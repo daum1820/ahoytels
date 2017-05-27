@@ -1,11 +1,11 @@
 import Alert from '../models/Alert';
 import AlertView from '../views/AlertView';
 import Bind from '../factory/Bind';
-import {jQueryDocument as $} from '../utils';
 
 class AlertService {
     
     constructor() {
+        let $ = document.querySelector.bind(document);
         this._alert = new Bind(
             new Alert(), 
             new AlertView($('#alert-view')),
@@ -36,8 +36,8 @@ class AlertService {
     }
 }
 
-let alertService = new AlertService();
+let service = new AlertService();
 
 export default function() {
-    return alertService;
+    return service;
 }

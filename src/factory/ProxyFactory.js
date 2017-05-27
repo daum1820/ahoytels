@@ -5,7 +5,7 @@ export default class ProxyFactory {
         return new Proxy(object, {
                 
                 get(target, property, receiver) {
-                    console.info("ProxyFactory GET interceptor:", target, property, value, receiver);
+                    console.info("ProxyFactory GET interceptor:", target, property, receiver);
                     if(props.includes(property) && ProxyFactory._isFunction(target[property])) {
                         return function() {
                             let result = Reflect.apply(target[property], target, arguments);

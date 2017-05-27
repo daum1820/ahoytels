@@ -9,7 +9,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body',
 });
 
-const DefinePluginConfig = new webpack.DefinePlugin({   
+const DefinePluginConfig = new webpack.DefinePlugin({
     'process.env.BASE_URL': JSON.stringify('http://fake-hotel-api.herokuapp.com'),
 });
 
@@ -25,8 +25,8 @@ const plugins = [
 
 const loaders = [
     {
-        test: /.jsx?$/,
-        loader: 'babel-loader', include: [path.resolve('src')], 
+        test: /.js?$/,
+        loader: 'babel-loader',
         include: [path.resolve('src')],
         exclude: [/node_modules/],
     },
