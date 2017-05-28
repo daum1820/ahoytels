@@ -1,3 +1,4 @@
+import _ from 'lodash';
 
 export default class HotelList {
 
@@ -6,7 +7,7 @@ export default class HotelList {
     }
 
     all() {
-        return Object.values(this._hotels);
+        return _.values(this._hotels);
     }
 
     add(hotel) {
@@ -16,7 +17,24 @@ export default class HotelList {
         }
     }
 
+    get(hotelId){
+      return this._hotels[hotelId];
+    }
+
     clear() {
         this._hotels = {};
-    }   
+    }
+
+    hasReviews(hotelId){
+      return this._hotels[hotelId].hasReviews;
+    }
+
+    addReviews(hotelId){
+      this._hotels[hotelId].hasReviews = true;
+    }
+    
+    clearReviews(hotelId){
+      this._hotels[hotelId].clearReviews();
+      this._hotels[hotelId].hasReviews = false;
+    }
 }

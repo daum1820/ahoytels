@@ -5,10 +5,9 @@ import Bind from '../factory/Bind';
 class AlertService {
     
     constructor() {
-        let $ = document.querySelector.bind(document);
         this._alert = new Bind(
             new Alert(), 
-            new AlertView($('#alert-view')),
+            new AlertView('#alert-view'),
             'message', 
             'type');    
         this._init();

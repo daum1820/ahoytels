@@ -2,8 +2,8 @@ import View from './View';
 
 export default class AlertView extends View {
     
-    constructor(element) {
-       super(element);
+    constructor(querySelector) {
+       super(querySelector);
     }
     
    template(model) {

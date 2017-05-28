@@ -5,7 +5,6 @@ export default class HotelReview {
         this._name = props.name || '';
         this._comment = props.comment || '';
         this._positive = props.positive || false;
-        Object.freeze(this);
     }
 
     get id(){

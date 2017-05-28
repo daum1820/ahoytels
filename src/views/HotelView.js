@@ -1,39 +1,47 @@
 import View from './View';
 
-export default class HotelListView extends View {
+export default class HotelView extends View {
     
-    constructor(element) {
-       super(element);
+    constructor(querySelector) {
+       super(querySelector);
     }
     
    template(model) {
        return `
-              ${model.all().map(item => `
+              ${model.all().map(item => {
+                let toogleReviewsLabel = !!item.hasReviews ? 'Hide reviews' : 'Show reviews';
+                return `
                 <div id='${item.id}' class='hp-hotel-container hotel-view'>
-                  <div class='hp-hotel-images'></div>
-                  <div class='hp-hotel-details'>
-                    <div class='hp-hotel-header'>
-                      <div class='hp-hotel-stars hp-pull-right'>
-                        ${item.stars}
+                  <div class='hp-hotel-main'>
+                    <div class='hp-hotel-images'></div>
+                    <div class='hp-hotel-details'>
+                      <div class='hp-hotel-header'>
+                        <div class='hp-hotel-stars hp-pull-right'>
+                          ${item.stars}
+                        </div>
+                        <h1>${item.name}</h1>
+                        <h4>${item.city} - ${item.country}</h4>
                       </div>
-                      <h1>${item.name}</h1>
-                      <h4>${item.city} - ${item.country}</h4>
-                    </div>
-                    <div>
-                      <p>${item.description}</p>
-                    </div>
-                    <div class='hp-hotel-footer'>
-                        <div class='hp-pull-right'>
-                              <h1>${item.price}€</h1>
-                              <small>${item.dateStart} - ${item.dateEnd}</small>
-                        </div>
-                        <div class'hp-hotel-more toogle-reviews'>
-                          <button type="button" class="hp-btn hp-btn-sm toogle-reviews">Show reviews</button>
-                        </div>
+                      <div>
+                        <p>${item.description}</p>
+                      </div>
+                      <div class='hp-hotel-footer'>
+                          <div class='hp-pull-right'>
+                                <h1>${item.price}€</h1>
+                                <small>${item.dateStart} - ${item.dateEnd}</small>
+                          </div>
+                          <div class'hp-hotel-more'>
+                            <button hotel-id="${item.id}" type='button' class='hp-btn hp-btn-sm toggle-review'>
+                              ${toogleReviewsLabel}
+                            </button>
+                          </div>
+                      </div>
                     </div>
                   </div>
+                  <div id='reviews-${item.id}' class='hp-hotel-reviews hotel-reviews'>
+                  </div>
                 </div>
-              `).join('')}
+              `}).join('')}
        `;
    }
 }

@@ -3,8 +3,8 @@
   */
 export default class View {
     
-    constructor(element) {
-        this._element = element;
+    constructor(querySelector) {
+        this._selector = querySelector;
     }
     
     template() {
@@ -12,7 +12,8 @@ export default class View {
     }
     
     update(model) {
-        console.info("Dispatch View update: ", this._element, model);
-        this._element.innerHTML = this.template(model);
+        let $ = document.querySelector.bind(document);
+        let element = $(this._selector);
+        element.innerHTML = this.template(model);
     }
 }

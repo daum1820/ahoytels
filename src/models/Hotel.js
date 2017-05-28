@@ -14,8 +14,8 @@ export default class Hotel {
         this._stars = props.stars ||0;
         this._rating = props.rating ||0;
         this._description = props.description ||'';
-        this._reviews = [];
-        Object.freeze(this);
+        this._reviews = null;
+        this._hasReviews = false;
     }
 
     get id(){
@@ -63,11 +63,23 @@ export default class Hotel {
     }
 
     get reviews (){
-        return [].concat(this._reviews);
+      return this._reviews;
     }
 
     set reviews (reviews){
-        this._reviews = reviews;
+      this._reviews = reviews;
+    }
+
+    get hasReviews (){
+      return this._hasReviews;
+    }
+
+    set hasReviews (hasReviews){
+      this._hasReviews = hasReviews;
+    }
+
+    clearReviews(){
+      this._reviews = null;
     }
 
 }
