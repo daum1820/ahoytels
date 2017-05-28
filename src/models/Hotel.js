@@ -14,6 +14,7 @@ export default class Hotel {
         this._stars = props.stars ||0;
         this._rating = props.rating ||0;
         this._description = props.description ||'';
+        this._reviews = [];
         Object.freeze(this);
     }
 
@@ -60,4 +61,13 @@ export default class Hotel {
     get description (){
       return this._description;
     }
+
+    get reviews (){
+        return [].concat(this._reviews);
+    }
+
+    set reviews (reviews){
+        this._reviews = reviews;
+    }
+
 }

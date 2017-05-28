@@ -1,11 +1,11 @@
-import HotelListController from './HotelListController';
+import HotelController from './HotelController';
 
 class MainController{
     
     constructor() {
       let $ = document.querySelector.bind(document);
       console.log("Application Started...");
-      $('button.load-hotel').onclick = HotelListController().loadHotel.bind(HotelListController());
+      $('button.load-hotel').onclick = HotelController().loadHotel.bind(HotelController());
     }
 }
 
