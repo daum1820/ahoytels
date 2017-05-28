@@ -3,18 +3,18 @@ import _ from 'lodash';
 export default class HotelList {
 
     constructor() {
-        this._hotels = {};
+      this._hotels = {};
     }
 
     all() {
-        return _.values(this._hotels);
+      return _.values(this._hotels);
     }
 
     add(hotel) {
-        this._hotels = {
-          ...this._hotels,
-          [hotel.id] : hotel
-        }
+      this._hotels = {
+        ...this._hotels,
+        [hotel.id] : hotel
+      }
     }
 
     get(hotelId){
@@ -22,7 +22,7 @@ export default class HotelList {
     }
 
     clear() {
-        this._hotels = {};
+      this._hotels = {};
     }
 
     hasReviews(hotelId){
@@ -32,7 +32,7 @@ export default class HotelList {
     addReviews(hotelId){
       this._hotels[hotelId].hasReviews = true;
     }
-    
+
     clearReviews(hotelId){
       this._hotels[hotelId].clearReviews();
       this._hotels[hotelId].hasReviews = false;

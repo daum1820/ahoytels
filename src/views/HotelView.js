@@ -1,4 +1,5 @@
 import View from './View';
+import 'font-awesome/scss/font-awesome.scss';
 
 export default class HotelView extends View {
     
@@ -8,17 +9,15 @@ export default class HotelView extends View {
     
    template(model) {
        return `
-              ${model.all().map(item => {
+              ${model.all().map((item, idx) => {
                 let toogleReviewsLabel = !!item.hasReviews ? 'Hide reviews' : 'Show reviews';
                 return `
-                <div id='${item.id}' class='hp-hotel-container hotel-view'>
+                <div id='${idx}' class='hp-hotel-container hotel-view'>
                   <div class='hp-hotel-main'>
                     <div class='hp-hotel-images'></div>
                     <div class='hp-hotel-details'>
                       <div class='hp-hotel-header'>
-                        <div class='hp-hotel-stars hp-pull-right'>
-                          ${item.stars}
-                        </div>
+                        <div id='stars-${idx}' class='hp-stars'max-stars=5 current-stars=${item.stars}></div>
                         <h1>${item.name}</h1>
                         <h4>${item.city} - ${item.country}</h4>
                       </div>

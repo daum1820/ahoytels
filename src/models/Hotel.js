@@ -78,6 +78,10 @@ export default class Hotel {
       this._hasReviews = hasReviews;
     }
 
+    render(){
+      console.log( `Rendering Hotel ${this.id}`)
+    }
+
     clearReviews(){
       this._reviews = null;
     }

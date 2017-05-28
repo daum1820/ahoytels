@@ -1,3 +1,4 @@
+import $ from 'jquery';
  /**
   * Base Interface for Views.
   */
@@ -12,8 +13,6 @@ export default class View {
     }
     
     update(model) {
-        let $ = document.querySelector.bind(document);
-        let element = $(this._selector);
-        element.innerHTML = this.template(model);
+        $(this._selector).html(this.template(model));
     }
 }

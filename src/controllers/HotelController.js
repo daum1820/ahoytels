@@ -1,14 +1,17 @@
 import _ from 'lodash';
+import $ from 'jquery';
 import AlertService from '../services/AlertService';
 import HotelView from '../views/HotelView';
 import HotelReviewView from '../views/HotelReviewsView';
 import HotelList from '../models/HotelList';
 import HotelService from '../services/HotelService';
+import StarController from './StarController';
 import Bind from '../factory/Bind';
 
 class HotelController {
 
     constructor() {
+      this._reviews = {};
       this._hotelList = new Bind(
         new HotelList(), 
         new HotelView('#hotel-list-view'),
@@ -17,22 +20,40 @@ class HotelController {
     }
     
     _init() {
-        this._alertService = AlertService();
-        this._hotelService = HotelService();
+      this._alertService = AlertService();
+      this._hotelService = HotelService();
+    }
+
+    _clear(){
+      this._reviews = {};
+      this._hotelList.clear();
+      this._alertService.clear();
+    }
+
+    _bindReview(hotelId){
+      if(!this._reviews[hotelId]){
+        this._reviews[hotelId] = new Bind(
+          this._hotelList.get(hotelId), 
+          new HotelReviewView('div#reviews-' + hotelId), 
+          'render');
+      }
     }
 
     render(){
-      let buttons = document.getElementsByClassName('toggle-review');
-      _.forEach(buttons, button => button.onclick = this.toogleReviews.bind(this, button.getAttribute('hotel-id')));
+      $('.toggle-review').each(
+          (index, button) => 
+            button.onclick = this.toogleReviews.bind(this, button.getAttribute('hotel-id'))
+      );
+      _.values(this._reviews).forEach(hotel => hotel.render());
+      StarController().render();
     }
 
     loadHotel(){
-        this._hotelList.clear();
-        this._alertService.clear();
-        this._hotelService.list()
-          .then(hotels => hotels.forEach(hotel => this._hotelList.add(hotel)))
-          .then(() => this.render())
-          .catch(err => this._alertService.error(err));
+      this._clear();
+      this._hotelService.list()
+        .then(hotels => hotels.forEach(hotel => this._hotelList.add(hotel)))
+        .then(() => this.render())
+        .catch(err => this._alertService.error(err));
     }
 
     toogleReviews(hotelId){
@@ -41,15 +62,11 @@ class HotelController {
         this._hotelList.clearReviews(hotelId);
         this.render();
       } else {
-        let hotelView = new Bind(
-          this._hotelList.get(hotelId), 
-          new HotelReviewView('div#reviews-' + hotelId), 
-          'reviews');
-
+        this._bindReview(hotelId);
         this._hotelService.fetchReviews(hotelId)
           .then(reviews => {
             this._hotelList.addReviews(hotelId);
-            hotelView.reviews = reviews;
+            this._reviews[hotelId].reviews = reviews;
             return Promise.resolve(reviews);
           })
           .then(() => this.render())
