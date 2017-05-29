@@ -45,7 +45,7 @@ const loaders = [
 
 const webpackConfig = {
     entry: './src/index.js',
-    output: { path: `${__dirname}/dist`, filename: 'build.js' },
+    output: { path: `${__dirname}`, filename: 'build.js' },
     cache: true,
     devtool: 'source-map',
     devServer: {

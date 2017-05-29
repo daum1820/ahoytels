@@ -7,6 +7,9 @@
   "author": "Felipe Herrerias <daum1820@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "postinstall": "webpack --progress --profile --colors -p --config webpack.config.prod.babel.js",
+    "build": "webpack --progress --profile --colors -p --config webpack.config.prod.babel.js",
+    "start": "node server.js",
     "test": "echo 'No tests provided.'",
     "dev": "webpack-dev-server -d -w --port 8080 --inline --config webpack.config.babel.js"
   },
@@ -24,6 +27,7 @@
     "babel-preset-stage-0": "^6.1.18",
     "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.26.1",
+    "express": "^4.15.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.9.0",
     "font-awesome": "^4.7.0",
