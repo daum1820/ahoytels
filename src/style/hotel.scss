@@ -10,10 +10,6 @@
 .hp-hotel-box{
   padding: 20px 20px;
 }
-img.hp-hotel-item{
-  max-height: 300px;
-  max-width: 400px;
-}
 .hp-hotel-item{
   @extend .hp-container-item;
   border: none;
@@ -21,6 +17,10 @@ img.hp-hotel-item{
   padding: 0px;
   margin: 0px;
   background-color: transparent;
+  img{
+    max-height: 300px;
+    max-width: 400px;
+  }
   &.hp-align-start{
     align-self: flex-start;
   }
@@ -33,6 +33,10 @@ img.hp-hotel-item{
 
   &.item-1{
     flex: 1;
+  }
+  &.item-4{
+    flex: 4;
+    font-size: 12px;
   }
   &.item-6{
     flex: 6;
@@ -55,6 +59,9 @@ img.hp-hotel-item{
   .hp-hotel-main{
     @extend .hp-hotel-box;
     font-size: 12px;
+    @media screen and (min-width: 1080px) {
+      width: 720px;
+    }
   }
   .hp-hotel-footer{
     padding: 0px 20px 0px;
@@ -62,5 +69,18 @@ img.hp-hotel-item{
       font-weight: 600;
       font-size: 40px;
     }
+  }
+}
+
+.hp-image-nav{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 2px 5px;
+  border-radius: 25px;
+  background-color:$secondary-color;
+  opacity: 0.7;
+  .fa{
+    cursor: pointer;
   }
 }

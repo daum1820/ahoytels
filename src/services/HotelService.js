@@ -10,6 +10,10 @@ class HotelService {
       console.log(`HotelService > baselUrl: ${this._baseUrl}`)
     }
 
+    /**
+     * Return Hotels from the provided API.
+     * @param {Object} params 
+     */
     list(params = {}){
       params = {
         params,
@@ -35,6 +39,10 @@ class HotelService {
       });
     }
 
+    /**
+     * Fetch the reviews for on Hotel, based on Hotel's Id.
+     * @param {String} hotelId 
+     */
     fetchReviews(hotelId){
       const params = {
         hotel_id : hotelId

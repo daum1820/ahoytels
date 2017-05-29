@@ -28,12 +28,6 @@ main{
   position: relative;
 }
 
-@mixin max-width($width) {
-	@media screen and (max-width: $width) {
-		@content;
-	}
-}
-
 .hp-container {
 	position: relative;
 	display: flex;
@@ -110,4 +104,8 @@ main{
   padding: 10px 14px;
   border-radius: 50px;
   background-color:$secondary-color;
+}
+
+.height-300{
+  height: 300px;
 }

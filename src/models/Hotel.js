@@ -15,6 +15,7 @@ export default class Hotel {
         this._rating = props.rating ||0;
         this._description = props.description ||'';
         this._reviews = null;
+        this._currImage = 0;
     }
 
     get id(){
@@ -67,6 +68,14 @@ export default class Hotel {
 
     set reviews (reviews){
       this._reviews = reviews;
+    }
+
+    get currImage (){
+      return this._currImage;
+    }
+
+    set currImage (currImage){
+      return this._currImage = currImage;
     }
 
     render(){

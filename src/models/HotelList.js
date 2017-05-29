@@ -24,17 +24,4 @@ export default class HotelList {
     clear() {
       this._hotels = {};
     }
-
-    hasReviews(hotelId){
-      return this._hotels[hotelId].hasReviews;
-    }
-
-    addReviews(hotelId){
-      this._hotels[hotelId].hasReviews = true;
-    }
-
-    clearReviews(hotelId){
-      this._hotels[hotelId].clearReviews();
-      this._hotels[hotelId].hasReviews = false;
-    }
 }

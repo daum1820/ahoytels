@@ -6,7 +6,7 @@ import '../style/stars.scss';
 
 class StarController{
     render(){
-      $('.hp-stars').each((idx, star) => {
+      $('.hp-stars').each((index, star) => {
             const id = star.getAttribute('id');
             const currentStars = star.getAttribute('current-stars');
             const maxStars = star.getAttribute('max-stars');
