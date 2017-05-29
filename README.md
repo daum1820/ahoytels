@@ -15,7 +15,7 @@
 * Moment
 * Lodash
 * Webpack
-* Babels
+* Babel
 
 #### Commands
 ###### Install
