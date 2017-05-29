@@ -1,6 +1,7 @@
 import Alert from '../models/Alert';
 import AlertView from '../views/AlertView';
 import Bind from '../factory/Bind';
+import '../style/alert.scss';
 
 class AlertService {
     

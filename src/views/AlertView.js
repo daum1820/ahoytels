@@ -7,10 +7,13 @@ export default class AlertView extends View {
     }
     
    template(model) {
-       let innerTemplate = `<p></p>`;
-       if(!!model){
+       let innerTemplate = `<div></div>`;
+       if(!!model && model.message){
             let type = model.type || 'info';
-            innerTemplate = `<p class="alert alert-${type}">${model.message}</p>`
+            let icon = type === 'error' ? 'exclamation-triangle' : ( type === 'success' ? 'check': type)
+            innerTemplate = `<div class='hp-container hp-alert hp-alert-${type}'>
+              <i class='fa fa-${icon}'></i> ${model.message}
+            </div>`
        }
        return innerTemplate;
    }

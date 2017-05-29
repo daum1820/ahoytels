@@ -13,7 +13,7 @@ class HotelService {
     list(params = {}){
       params = {
         params,
-        count: params.count || 5,
+        count: params.count || 5
       }
 
       this.loader.start();
