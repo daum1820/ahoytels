@@ -1,8 +1,9 @@
 import $ from 'jquery';
-
 import Star from '../models/Stars';
 import StarView from '../views/StarView';
 import Bind from '../factory/Bind';
+import '../style/stars.scss';
+
 class StarController{
     render(){
       $('.hp-stars').each((idx, star) => {

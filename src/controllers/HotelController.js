@@ -7,6 +7,7 @@ import HotelList from '../models/HotelList';
 import HotelService from '../services/HotelService';
 import StarController from './StarController';
 import Bind from '../factory/Bind';
+import '../style/hotel.scss';
 
 class HotelController {
 

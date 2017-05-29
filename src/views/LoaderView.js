@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import View from './View';
 
 export default class AlertView extends View {
@@ -6,11 +7,15 @@ export default class AlertView extends View {
        super(querySelector);
     }
     
-   template(model) {
-       let innerTemplate = ``;
-       if(!!model && model.loading){
-            innerTemplate = `<p>Loading</p>`
-       }
-       return innerTemplate;
-   }
+    template(model) {
+      if(!!model){
+        if(!model.loading){
+          $('#loader-view').hide();
+        } else {
+          $('#loader-view').show();
+        }
+        $('#loader-view').width(model.loading + '%');
+      }
+      return ``;
+    }
 }

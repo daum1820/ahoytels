@@ -1,0 +1,113 @@
+$font-stack : 'Open Sans', sans-serif;
+$primary-color: #4E2242;
+$primary-hover-color: #814375;
+$font-color: #FFF;
+$secondary-color: #E6E6E6;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  font-weight: 400;
+  padding: 20px;
+}
+
+header{
+    position: fixed;
+    width: 94%;
+    left: 3%;
+    top: 0;
+    background-color: #FFF;
+    z-index: 100;
+    padding: 20px;
+    margin-bottom: 3px;
+}
+main{
+  margin-top: 40px;
+  width: 90%;
+  left: 5%;
+  position: relative;
+}
+
+@mixin max-width($width) {
+	@media screen and (max-width: $width) {
+		@content;
+	}
+}
+
+.hp-container {
+	position: relative;
+	display: flex;
+	flex-flow: row wrap;
+}
+.hp-container-item {
+	box-sizing: border-box;
+	padding: 20px;
+	flex: 1;
+}
+
+.hp-container-center{
+  @extend .hp-container;
+  justify-content : center;
+  &.border-bottom{
+    border-bottom: 2px dotted $primary-color;
+    padding-bottom: 10px;
+  }
+}
+
+.hp-container-middle{
+  @extend .hp-container;
+  align-items: center;
+}
+
+.hp-container-item{
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  padding: 0px;
+  margin-bottom: 15px;
+  background-color: $secondary-color;
+}
+
+.hp-btn{
+  width: 140px;
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  color: $font-color;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover{
+    background-color: $primary-hover-color;
+  }
+}
+
+.hp-pull-right{
+  float: right;
+}
+
+.hp-pull-left{
+  float: left;
+}
+
+@mixin transition($radius) {
+  -webkit-transition: $radius;
+     -moz-transition: $radius;
+      -ms-transition: $radius;
+          transition: $radius;
+}
+
+#loader-view{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: $primary-color;
+  @include transition(all 0.2s);
+}
+
+.hp-badge{
+  padding: 10px 14px;
+  border-radius: 50px;
+  background-color:$secondary-color;
+}

@@ -1,5 +1,4 @@
 import HotelController from './HotelController';
-
 class MainController{
     
     constructor() {

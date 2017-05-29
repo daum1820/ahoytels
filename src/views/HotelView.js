@@ -12,34 +12,35 @@ export default class HotelView extends View {
               ${model.all().map((item, idx) => {
                 let toogleReviewsLabel = !!item.hasReviews ? 'Hide reviews' : 'Show reviews';
                 return `
-                <div id='${idx}' class='hp-hotel-container hotel-view'>
-                  <div class='hp-hotel-main'>
-                    <div class='hp-hotel-images'></div>
-                    <div class='hp-hotel-details'>
-                      <div class='hp-hotel-header'>
-                        <div id='stars-${idx}' class='hp-stars'max-stars=5 current-stars=${item.stars}></div>
-                        <h1>${item.name}</h1>
-                        <h4>${item.city} - ${item.country}</h4>
-                      </div>
-                      <div>
-                        <p>${item.description}</p>
-                      </div>
-                      <div class='hp-hotel-footer'>
-                          <div class='hp-pull-right'>
-                                <h1>${item.price}€</h1>
-                                <small>${item.dateStart} - ${item.dateEnd}</small>
-                          </div>
-                          <div class'hp-hotel-more'>
+                <div id='${idx}' class='hp-container-center'>
+                  <div class='hp-container-item'>
+                    <div class='hp-container'>
+                      <img class='hp-hotel-item' src="${item.images[0]}" />
+                      <div class='hp-hotel-item'>
+                        <div class='hp-hotel-header'>
+                          <div id='stars-${idx}' class='hp-stars'max-stars=5 current-stars=${item.stars}></div>
+                          <h2>${item.name}</h2>
+                          <small>${item.city} - ${item.country}</small>
+                        </div>
+                        <div class='hp-hotel-main'>
+                          <div>${item.description}</div>
+                        </div>
+                        <div class='hp-hotel-footer hp-container'>
+                          <div class='hp-hotel-item hp-align-start'>
                             <button hotel-id="${item.id}" type='button' class='hp-btn hp-btn-sm toggle-review'>
                               ${toogleReviewsLabel}
                             </button>
                           </div>
+                          <div class='hp-hotel-item hp-align-end right'>
+                            <div class='hp-hotel-price'>${item.price}<small>€</small></div>
+                            <small>${item.dateStart} - ${item.dateEnd}</small>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    <div id='reviews-${item.id}'>
+                    </div>
                   </div>
-                  <div id='reviews-${item.id}' class='hp-hotel-reviews hotel-reviews'>
-                  </div>
-                </div>
               `}).join('')}
        `;
    }

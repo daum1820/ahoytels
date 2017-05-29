@@ -4,7 +4,6 @@ export default class ProxyFactory {
     return new Proxy(object, {
       
       get(target, property, receiver) {
-        console.log(`Proxy GET > `,target, property, receiver)
         if(props.includes(property) && ProxyFactory._isFunction(target[property])) {
           return function() {
             let result = Reflect.apply(target[property], target, arguments);
@@ -16,7 +15,6 @@ export default class ProxyFactory {
         return Reflect.get(target, property, receiver);
       },
       set(target, property, value, receiver) {
-        console.log(`Proxy SET > `,target, property, value, receiver)
         let result = Reflect.set(target, property, value, receiver);
         if(props.includes(property)){
           callback(target);

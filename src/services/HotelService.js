@@ -13,17 +13,23 @@ class HotelService {
     list(params = {}){
       params = {
         params,
-        count: params.count || 5
+        count: params.count || 5,
       }
 
       this.loader.start();
       return axios.get(`${this._baseUrl}/api/hotels`, {params}).then(response => {
         console.log('HotelService > list', response.data);
-        this.loader.stop();
-        return Promise.resolve(response.data.map(hotel => new Hotel(hotel)));
+        this.loader.inc(30);
+        
+        let result = Promise.resolve(response.data.map(hotel => {
+          this.loader.inc();
+          return new Hotel(hotel);
+        }));
+        this.loader.done();
+        return result;
       }).catch(error => {
         console.log("Error HotelService > list", error.response.data);
-        this.loader.stop();
+        this.loader.done();
         return Promise.reject(error.response.data.error);
       });
     }
@@ -35,8 +41,14 @@ class HotelService {
       this.loader.start();
       return axios.get(`${this._baseUrl}/api/reviews`, {params}).then(response => {
         console.log('HotelService > fetchReviews', response.data);
-        this.loader.stop();
-        return Promise.resolve(response.data.map(hotel => new HotelReview(hotel)));
+        this.loader.inc(30);
+        let result = Promise.resolve(response.data.map(hotel => {
+          this.loader.inc();
+          return new HotelReview(hotel);
+        }));
+        this.loader.done();
+        return result;
+
       }).catch(error => {
         console.log("Error HotelService > fetchReviews", error.response.data);
         this.loader.stop();

@@ -5,17 +5,24 @@ class LoaderService {
     
     constructor() {
         this._loader = new Bind(
-            {loading : false}, 
+            {loading : 0}, 
             new LoaderView('#loader-view'),
             'loading');
     }
     
     start(){
-      this._loader.loading = true;
+      this._loader.loading = 0;
     }
 
-    stop(){
-      this._loader.loading = false;
+    inc(percentual){
+      this._loader.loading += percentual ? percentual : (100 - this._loader.loading) /2;
+    }
+
+    done(){
+      this._loader.loading = 100;
+      setTimeout(() => {
+        this._loader.loading = 0;
+      }, 500)
     }
 }
 
