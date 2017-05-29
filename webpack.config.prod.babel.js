@@ -10,7 +10,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 const DefinePluginConfig = new webpack.DefinePlugin({
-  'process.env.BASE_URL': JSON.stringify('http://fake-hotel-api.herokuapp.com'),
+  'process.env.BASE_URL': JSON.stringify('https://fake-hotel-api.herokuapp.com'),
 });
 
 const plugins = [
