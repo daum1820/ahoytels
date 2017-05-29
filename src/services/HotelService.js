@@ -17,9 +17,10 @@ class HotelService {
       }
 
       this.loader.start();
+      this.loader.inc(30);
       return axios.get(`${this._baseUrl}/api/hotels`, {params}).then(response => {
         console.log('HotelService > list', response.data);
-        this.loader.inc(30);
+        this.loader.inc(50);
         
         let result = Promise.resolve(response.data.map(hotel => {
           this.loader.inc();
@@ -39,9 +40,10 @@ class HotelService {
         hotel_id : hotelId
       }
       this.loader.start();
+      this.loader.inc(30);
       return axios.get(`${this._baseUrl}/api/reviews`, {params}).then(response => {
         console.log('HotelService > fetchReviews', response.data);
-        this.loader.inc(30);
+        this.loader.inc(50);
         let result = Promise.resolve(response.data.map(hotel => {
           this.loader.inc();
           return new HotelReview(hotel);

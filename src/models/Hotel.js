@@ -15,7 +15,6 @@ export default class Hotel {
         this._rating = props.rating ||0;
         this._description = props.description ||'';
         this._reviews = null;
-        this._hasReviews = false;
     }
 
     get id(){
@@ -68,14 +67,6 @@ export default class Hotel {
 
     set reviews (reviews){
       this._reviews = reviews;
-    }
-
-    get hasReviews (){
-      return this._hasReviews;
-    }
-
-    set hasReviews (hasReviews){
-      this._hasReviews = hasReviews;
     }
 
     render(){

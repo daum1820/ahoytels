@@ -10,7 +10,6 @@ export default class HotelView extends View {
    template(model) {
        return `
               ${model.all().map((item, idx) => {
-                let toogleReviewsLabel = !!item.hasReviews ? 'Hide reviews' : 'Show reviews';
                 return `
                 <div id='${idx}' class='hp-container-center'>
                   <div class='hp-container-item'>
@@ -28,7 +27,7 @@ export default class HotelView extends View {
                         <div class='hp-hotel-footer hp-container'>
                           <div class='hp-hotel-item hp-align-start'>
                             <button hotel-id="${item.id}" type='button' class='hp-btn hp-btn-sm toggle-review'>
-                              ${toogleReviewsLabel}
+                              Show Reviews
                             </button>
                           </div>
                           <div class='hp-hotel-item hp-align-end right'>

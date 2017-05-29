@@ -16,7 +16,7 @@ class HotelController {
       this._hotelList = new Bind(
         new HotelList(), 
         new HotelView('#hotel-list-view'),
-        'add','clear','all', 'get', 'addReviews', 'clearReviews', 'hasReviews');
+        'add','clear','all');
         this._init();
     }
     
@@ -38,6 +38,8 @@ class HotelController {
           new HotelReviewView('div#reviews-' + hotelId), 
           'render');
       }
+
+      return this._reviews[hotelId];
     }
 
     render(){
@@ -57,16 +59,17 @@ class HotelController {
         .catch(err => this._alertService.error(err));
     }
 
-    toogleReviews(hotelId){
-
-      if(this._hotelList.hasReviews(hotelId)){
+    toogleReviews(hotelId, $event){
+      let hotel = this._bindReview(hotelId);
+      
+      if(!!hotel.reviews){
+        $($event.currentTarget).text('Show Reviews');
         this._hotelList.clearReviews(hotelId);
         this.render();
       } else {
-        this._bindReview(hotelId);
+        $($event.currentTarget).text('Hide Reviews');
         this._hotelService.fetchReviews(hotelId)
           .then(reviews => {
-            this._hotelList.addReviews(hotelId);
             this._reviews[hotelId].reviews = reviews;
             return Promise.resolve(reviews);
           })
